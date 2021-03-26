@@ -7,9 +7,9 @@ class Node {
 
 class SLL {
 	constructor() {
+		this.length = 0;
 		this.head = null;
 		this.tail = null;
-		this.length = 0;
 	}
 	push(val) {
 		let n = new Node(val);
@@ -47,11 +47,41 @@ class SLL {
 		}
 		return current.val;
 	}
+	shift() {
+		if (!this.head) return undefined;
+		let temp = this.head;
+		this.head = this.head.next;
+		temp.next = null;
+		this.length--;
+		if (this.length === 0) {
+			this.head = null;
+			this.tail = null;
+		}
+		return temp.val;
+	}
+	unshift(val) {
+		let newHead = new Node(val);
+		if (!this.head) {
+			this.head = newHead;
+			this.tail = this.head;
+		} else {
+			newHead.next = this.head;
+			this.head = newHead;
+		}
+		this.length++;
+		return this;
+	}
+	get(idx) {
+		if (idx < 0 || idx >= this.length) return 'Invalid Index Specified';
+		let i = 0;
+		let current = this.head;
+
+		while (i != idx) {
+			current = current.next;
+			i++;
+		}
+		return current.val;
+	}
 }
 
 let list = new SLL();
-list.push('Hello');
-list.push('There');
-list.push('good bye');
-list.pop();
-list.traverse();

@@ -7,9 +7,9 @@ class Node {
 
 class SLL {
 	constructor() {
+		this.length = 0;
 		this.head = null;
 		this.tail = null;
-		this.length = 0;
 	}
 	push(val) {
 		let n = new Node(val);
@@ -47,11 +47,18 @@ class SLL {
 		}
 		return current.val;
 	}
+	shift() {
+		if (!this.head) return undefined;
+		let temp = this.head;
+		this.head = this.head.next;
+		temp.next = null;
+		this.length--;
+		if (this.length === 0) {
+			this.head = null;
+			this.tail = null;
+		}
+		return temp.val;
+	}
 }
 
 let list = new SLL();
-list.push('Hello');
-list.push('There');
-list.push('good bye');
-list.pop();
-list.traverse();
