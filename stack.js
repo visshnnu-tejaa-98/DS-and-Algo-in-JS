@@ -33,6 +33,13 @@ class Stack {
 			i++;
 		}
 	}
+	pop() {
+		if (!this.head) return null;
+		let temp = this.head;
+		this.head = temp.next;
+		temp.next = null;
+		return temp.val;
+	}
 }
 
 let stack = new Stack();
