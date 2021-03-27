@@ -138,7 +138,35 @@ class SLL {
 		}
 		return this;
 	}
+	removeDuplicates() {
+		if (!this.head) return undefined;
+		let current = this.head;
+		while (current && current.next) {
+			if (current.val === current.next.val) {
+				current.next = current.next.next;
+			} else {
+				current = current.next;
+			}
+		}
+	}
 }
 
 let list = new SLL();
-module.exports = list;
+list.push(20);
+list.push(20);
+list.push(30);
+list.push(40);
+list.push(40);
+list.push(40);
+list.push(40);
+list.push(40);
+list.push(40);
+list.push(50);
+list.push(50);
+list.push(50);
+list.push(50);
+list.push(50);
+list.traverse();
+list.removeDuplicates();
+console.log('After removing duplecates');
+list.traverse();
